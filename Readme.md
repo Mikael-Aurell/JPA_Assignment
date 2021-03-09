@@ -1,5 +1,6 @@
 ##### 1. Created JPA Assignment Project
 #### 2.1 Configure resources and database
-#### 2.2 Added Class Ingredient and Test
-#### 2.3 Added Enum Measurement and Test
-#### 2.4 Added RecipeIngredient and Test
+#### 2.2 Added Class Ingredient and IngredientTest
+#### 2.3 Added Enum Measurement and MeasurementTest
+#### 2.4 Added RecipeIngredient and RecipeIngredientTest
+#### 2.5 Added RecipeCategory and RecipeCategoryTest
