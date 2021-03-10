@@ -6,20 +6,20 @@ import java.util.Objects;
 public class RecipeCategory {
     private int id;
     private String category;
-    private List<RecipeCategory> categories;
+    private List<Recipe> recipes;
 
     public RecipeCategory() {
     }
 
-    public RecipeCategory(int id, String category, List<RecipeCategory> categories) {
+    public RecipeCategory(int id, String category, List<Recipe> recipes) {
         this.id = id;
         this.category = category;
-        this.categories = categories;
+        this.recipes = recipes;
     }
 
-    public RecipeCategory(String category, List<RecipeCategory> categories) {
+    public RecipeCategory(String category, List<Recipe> recipes) {
         this.category = category;
-        this.categories = categories;
+        this.recipes = recipes;
     }
 
     public int getId() {
@@ -38,12 +38,12 @@ public class RecipeCategory {
         this.category = category;
     }
 
-    public List<RecipeCategory> getCategories() {
-        return categories;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setCategories(List<RecipeCategory> categories) {
-        this.categories = categories;
+    public void setCategories(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     @Override
@@ -51,12 +51,12 @@ public class RecipeCategory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecipeCategory that = (RecipeCategory) o;
-        return id == that.id && Objects.equals(category, that.category) && Objects.equals(categories, that.categories);
+        return id == that.id && Objects.equals(category, that.category) && Objects.equals(recipes, that.recipes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, categories);
+        return Objects.hash(id, category, recipes);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class RecipeCategory {
         return "RecipeCategory{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
-                ", categories=" + categories +
+                ", categories=" + recipes +
                 '}';
     }
 }

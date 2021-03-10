@@ -4,3 +4,4 @@
 #### 2.3 Added Enum Measurement and MeasurementTest
 #### 2.4 Added RecipeIngredient and RecipeIngredientTest
 #### 2.5 Added RecipeCategory and RecipeCategoryTest
+#### 2.6 Added Recipe and RecipeTest
