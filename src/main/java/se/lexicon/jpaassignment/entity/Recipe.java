@@ -12,10 +12,10 @@ public class Recipe {
     private String name;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "recipe_instruction_id", unique = true)
+    @JoinColumn(name = "recipe_instruction_id")
     private RecipeInstruction recipeInstruction;
 
-    @OneToMany(fetch = FetchType.EAGER,
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "recipe_ingredient_id")
     private List<RecipeIngredient> recipeIngredients;

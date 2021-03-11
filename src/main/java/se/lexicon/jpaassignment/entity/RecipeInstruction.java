@@ -13,7 +13,6 @@ public class RecipeInstruction {
             name ="UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @OneToOne
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 

@@ -13,7 +13,7 @@ public class RecipeCategory {
     private String category;
 
     @ManyToMany
-    @JoinTable(name = "recipes_recipe_Categories"
+    @JoinTable(name = "recipes_recipe_categories"
     ,joinColumns = @JoinColumn(name = "recipe_category_id")
     ,inverseJoinColumns = @JoinColumn(name = "recipe_id")
     )
