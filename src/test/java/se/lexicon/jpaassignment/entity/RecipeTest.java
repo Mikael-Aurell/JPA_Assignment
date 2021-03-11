@@ -82,7 +82,7 @@ public class RecipeTest {
     public void test_successfully_created(){
         assertEquals(3,testObject.getId());
         assertEquals("Recipe3",testObject.getName());
-        assertEquals("Sugar", testObject.getRecipeIngredients().get(0).getIngredient().getIngredient_info());
+        assertEquals("Sugar", testObject.getRecipeIngredients().get(0).getIngredient().getIngredient());
         assertEquals("Instruction3", testObject.getRecipeInstruction().getInstructions());
         assertEquals("B", testObject.getRecipeCategories().get(1).getCategory());
     }

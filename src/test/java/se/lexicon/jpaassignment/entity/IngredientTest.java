@@ -21,7 +21,7 @@ public class IngredientTest {
     @DisplayName("Test 1 Created Object")
     public void test_successfully_created(){
     assertEquals(1, testObject.getId());
-    assertEquals(ingredient_info, testObject.getIngredient_info());
+    assertEquals(ingredient_info, testObject.getIngredient());
     }
 
     @Test

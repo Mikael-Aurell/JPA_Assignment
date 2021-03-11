@@ -10,18 +10,18 @@ public class Ingredient {
     private int id;
 
     @Column(unique = true)
-    private String ingredient_info;
+    private String ingredient;
 
     public Ingredient() {
     }
 
-    public Ingredient(int id, String ingredient_info) {
+    public Ingredient(int id, String ingredient) {
         this.id = id;
-        this.ingredient_info = ingredient_info;
+        this.ingredient = ingredient;
     }
 
-    public Ingredient(String ingredient_info) {
-        this.ingredient_info = ingredient_info;
+    public Ingredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
     public int getId() {
@@ -32,12 +32,12 @@ public class Ingredient {
         this.id = id;
     }
 
-    public String getIngredient_info() {
-        return ingredient_info;
+    public String getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredient_info(String ingredient_info) {
-        this.ingredient_info = ingredient_info;
+    public void setIngredient(String ingredient_info) {
+        this.ingredient = ingredient_info;
     }
 
     @Override
@@ -45,19 +45,19 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return id == that.id && Objects.equals(ingredient_info, that.ingredient_info);
+        return id == that.id && Objects.equals(ingredient, that.ingredient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ingredient_info);
+        return Objects.hash(id, ingredient);
     }
 
     @Override
     public String toString() {
         return "Ingredient{" +
                 "id=" + id +
-                ", ingredient_info='" + ingredient_info + '\'' +
+                ", ingredient_info='" + ingredient + '\'' +
                 '}';
     }
 }
