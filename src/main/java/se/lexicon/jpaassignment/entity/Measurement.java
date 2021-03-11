@@ -2,20 +2,17 @@ package se.lexicon.jpaassignment.entity;
 
 public enum Measurement {
 
-    TSP(1), TBSP(2), ML(3), CL(4), DL(5), L(6),
-    G(7), HG(8), KG(9), NON_BINARY(10);
+    TSP("tsp"), TBSP("tbsp"), ML("ml"), CL("cl"), DL("dl"), L("l"),
+    G("g"), HG("hg"), KG("kg"), NON_BINARY("non_binary");
 
-    private int typeCode;
+    private String typeCode;
 
-    Measurement(int typeCode){
+    Measurement(String typeCode){
         this.typeCode = typeCode;
     }
 
-    public int getTypeCode() {
+    public String getTypeCode() {
         return typeCode;
     }
 
-    public void setTypeCode(int typeCode) {
-        this.typeCode = typeCode;
-    }
 }

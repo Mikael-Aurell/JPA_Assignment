@@ -12,8 +12,14 @@ import java.util.UUID;
 
 public class RecipeCategoryTest {
     RecipeCategory testObject;
+    RecipeIngredient testRecipeIngredient1;
+    RecipeIngredient testRecipeIngredient2;
+
+    Recipe recipeTest1;
+    Recipe recipeTest2;
+
     List<Recipe> recipesTest;
-    List<Ingredient> ingredientsTest;
+    List<RecipeIngredient> recipeIngredientsTest;
     List<RecipeCategory> recipeCategories;
 
     @BeforeEach
@@ -21,17 +27,25 @@ public class RecipeCategoryTest {
 
         Ingredient testIngredient1 = new Ingredient(1,"Sugar");
         Ingredient testIngredient2 = new Ingredient(2,"Salt");
-        ingredientsTest = new ArrayList<>();
-        ingredientsTest.add(testIngredient1);
-        ingredientsTest.add(testIngredient2);
 
-        UUID uuidTest1 = UUID.randomUUID();
-        UUID uuidTest2 = UUID.randomUUID();
+        //RecipeIngredient
+        testRecipeIngredient1 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient1,5.0,Measurement.CL, recipeTest1);
+        testRecipeIngredient2 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient2,3.5,Measurement.DL, recipeTest2);
+
+        //List of RecipeIngredients
+        recipeIngredientsTest = new ArrayList<>();
+        recipeIngredientsTest.add(testRecipeIngredient1);
+        recipeIngredientsTest.add(testRecipeIngredient2);
+
+        String uuidTest1 = UUID.randomUUID().toString();
+        String uuidTest2 = UUID.randomUUID().toString();
         RecipeInstruction recipeInstructionTest1 = new RecipeInstruction(uuidTest1,"TestString1");
         RecipeInstruction recipeInstructionTest2 = new RecipeInstruction(uuidTest2,"TestString2");
 
-        Recipe recipeTest1 = new Recipe(1,"testName1", ingredientsTest, recipeInstructionTest1);
-        Recipe recipeTest2 = new Recipe(2,"testName2", ingredientsTest, recipeInstructionTest2);
+
+
+        recipeTest1 = new Recipe(1,"testName1", recipeIngredientsTest, recipeInstructionTest1);
+        recipeTest2 = new Recipe(2,"testName2", recipeIngredientsTest, recipeInstructionTest2);
         recipesTest = new ArrayList<>();
         recipesTest.add(recipeTest1);
         recipesTest.add(recipeTest2);

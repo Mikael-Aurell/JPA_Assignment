@@ -1,13 +1,12 @@
 package se.lexicon.jpaassignment.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Target;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
+@Entity
 public class RecipeIngredient {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -16,16 +15,24 @@ public class RecipeIngredient {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
-    private Ingredient ingredient; //Todo: reference
+    private String id;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredient;
+
     private double measured_amount;
-    private Measurement measurement; //Todo: reference
+
+    private Measurement measurement;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     public RecipeIngredient() {
     }
 
-    public RecipeIngredient(UUID id, Ingredient ingredient, double measured_amount, Measurement measurement, Recipe recipe) {
+    public RecipeIngredient(String id, Ingredient ingredient, double measured_amount, Measurement measurement, Recipe recipe) {
         this.id = id;
         this.ingredient = ingredient;
         this.measured_amount = measured_amount;
@@ -40,11 +47,11 @@ public class RecipeIngredient {
         this.recipe = recipe;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

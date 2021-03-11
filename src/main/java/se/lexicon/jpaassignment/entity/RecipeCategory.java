@@ -1,12 +1,24 @@
 package se.lexicon.jpaassignment.entity;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class RecipeCategory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column()
     private String category;
+
+    @ManyToMany
+    @JoinTable(name = "recipes_recipe_Categories"
+    ,joinColumns = @JoinColumn(name = "recipe_category_id")
+    ,inverseJoinColumns = @JoinColumn(name = "recipe_id")
+    )
     private List<Recipe> recipes;
+
 
     public RecipeCategory() {
     }

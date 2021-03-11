@@ -2,12 +2,10 @@ package se.lexicon.jpaassignment.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
+@Entity
 public class RecipeInstruction {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -15,16 +13,17 @@ public class RecipeInstruction {
             name ="UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
+    @OneToOne
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private String id;
+
+    @Column(length = 1500)
     private String instructions;
 
     public RecipeInstruction() {
     }
 
-
-
-    public RecipeInstruction(UUID id, String instructions) {
+    public RecipeInstruction(String id, String instructions) {
         this.id = id;
         this.instructions = instructions;
     }
@@ -33,11 +32,11 @@ public class RecipeInstruction {
         this.instructions = instructions;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,11 +1,8 @@
 package se.lexicon.jpaassignment.entity;
 
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-//import static org.junit.Assert.*;
-
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RecipeIngredientTest {
     RecipeIngredient testObject;
     Ingredient ingredientTest;
-    UUID uuidTest;
+    String uuidTest;
 
     @BeforeEach
     public void setup(){
         ingredientTest = new Ingredient(1,"sugar");
 
         testObject = new RecipeIngredient(ingredientTest,5,Measurement.CL,null);
-        uuidTest = UUID.randomUUID();
+        uuidTest = UUID.randomUUID().toString();
         testObject.setId(uuidTest);
     }
 

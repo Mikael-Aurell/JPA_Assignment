@@ -15,16 +15,16 @@ public class RecipeTest {
     Recipe recipeTest1;
     Recipe recipeTest2;
 
-    UUID uuidTest1;
-    UUID uuidTest2;
-    UUID uuidTest3;
+    String uuidTest1;
+    String uuidTest2;
+    String uuidTest3;
 
     RecipeInstruction recipeInstructionTest1;
     RecipeInstruction recipeInstructionTest2;
     RecipeInstruction recipeInstructionTest3;
 
     List<Recipe> recipesTest;
-    List<Ingredient> ingredientsTest;
+    List<RecipeIngredient> recipeIngredientsTest;
     List<RecipeCategory> recipeCategoriesTest;
 
 
@@ -37,19 +37,19 @@ public class RecipeTest {
         Ingredient testIngredient1 = new Ingredient(1,"Sugar");
         Ingredient testIngredient2 = new Ingredient(2,"Salt");
 
-        //List of Ingredients
-        ingredientsTest = new ArrayList<>();
-        ingredientsTest.add(testIngredient1);
-        ingredientsTest.add(testIngredient2);
-
         //RecipeIngredient
-        RecipeIngredient testRecipeIngredient1 = new RecipeIngredient(UUID.randomUUID(),testIngredient1,5.0,Measurement.CL, recipeTest1);
-        RecipeIngredient testRecipeIngredient2 = new RecipeIngredient(UUID.randomUUID(),testIngredient2,3.5,Measurement.DL,recipeTest2);
+        RecipeIngredient testRecipeIngredient1 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient1,5.0,Measurement.CL, recipeTest1);
+        RecipeIngredient testRecipeIngredient2 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient2,3.5,Measurement.DL,recipeTest2);
+
+        //List of RecipeIngredients
+        recipeIngredientsTest = new ArrayList<>();
+        recipeIngredientsTest.add(testRecipeIngredient1);
+        recipeIngredientsTest.add(testRecipeIngredient2);
 
         //UUID
-        uuidTest1 = UUID.randomUUID();
-        uuidTest2 = UUID.randomUUID();
-        uuidTest3 = UUID.randomUUID();
+        uuidTest1 = UUID.randomUUID().toString();
+        uuidTest2 = UUID.randomUUID().toString();
+        uuidTest3 = UUID.randomUUID().toString();
 
         //RecipeInstruction
         recipeInstructionTest1 = new RecipeInstruction(uuidTest1,"Instruction1");
@@ -66,15 +66,15 @@ public class RecipeTest {
         recipeCategoriesTest.add(recipeCategoryTest2);
 
         //Recipe
-        recipeTest1 = new Recipe(1,"Recipe1",ingredientsTest,recipeInstructionTest1,recipeCategoriesTest);
-        recipeTest2 = new Recipe(2,"Recipe2",ingredientsTest,recipeInstructionTest2,recipeCategoriesTest);
+        recipeTest1 = new Recipe(1,"Recipe1", recipeIngredientsTest,recipeInstructionTest1,recipeCategoriesTest);
+        recipeTest2 = new Recipe(2,"Recipe2", recipeIngredientsTest,recipeInstructionTest2,recipeCategoriesTest);
 
         //List of Recipes
         recipesTest = new ArrayList<>();
         recipesTest.add(recipeTest1);
         recipesTest.add(recipeTest2);
 
-        testObject = new Recipe(3,"Recipe3", ingredientsTest, recipeInstructionTest3, recipeCategoriesTest);
+        testObject = new Recipe(3,"Recipe3", recipeIngredientsTest, recipeInstructionTest3, recipeCategoriesTest);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class RecipeTest {
     public void test_successfully_created(){
         assertEquals(3,testObject.getId());
         assertEquals("Recipe3",testObject.getName());
-        assertEquals("Sugar", testObject.getIngredients().get(0).getIngredient_info());
+        assertEquals("Sugar", testObject.getRecipeIngredients().get(0).getIngredient().getIngredient_info());
         assertEquals("Instruction3", testObject.getRecipeInstruction().getInstructions());
         assertEquals("B", testObject.getRecipeCategories().get(1).getCategory());
     }
@@ -90,14 +90,14 @@ public class RecipeTest {
     @Test
     @DisplayName("Test 2 Equal")
     public void test_equal(){
-        Recipe expected = new Recipe(3,"Recipe3", ingredientsTest, recipeInstructionTest3, recipeCategoriesTest);
+        Recipe expected = new Recipe(3,"Recipe3", recipeIngredientsTest, recipeInstructionTest3, recipeCategoriesTest);
         assertTrue(expected.equals(testObject));
     }
 
     @Test
     @DisplayName("Test 3 Hashcode")
     public void test_hashcode(){
-        Recipe expected = new Recipe(3,"Recipe3", ingredientsTest, recipeInstructionTest3, recipeCategoriesTest);
+        Recipe expected = new Recipe(3,"Recipe3", recipeIngredientsTest, recipeInstructionTest3, recipeCategoriesTest);
         assertEquals(expected.hashCode(),testObject.hashCode());
     }
 }
