@@ -9,10 +9,10 @@ public class RecipeCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column()
+    @Column
     private String category;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "recipes_recipe_categories"
     ,joinColumns = @JoinColumn(name = "recipe_category_id")
     ,inverseJoinColumns = @JoinColumn(name = "recipe_id")

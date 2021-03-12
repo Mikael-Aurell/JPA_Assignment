@@ -20,7 +20,7 @@ public class Recipe {
     @JoinColumn(name = "recipe_ingredient_id")
     private List<RecipeIngredient> recipeIngredients;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "recipes_recipe_categories"
         ,joinColumns = @JoinColumn(name = "recipe_id")
         ,inverseJoinColumns = @JoinColumn(name = "recipe_category_id")

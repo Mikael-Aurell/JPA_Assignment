@@ -8,7 +8,6 @@ import se.lexicon.jpaassignment.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,23 +17,8 @@ public class RecipeRepoTest {
     @Autowired
     RecipeRepo testObject;
 
-
     Recipe recipe;
 
-
-
-
-
-    /*Recipe recipeTest2;
-
-    String uuidTest1;
-    String uuidTest2;
-    String uuidTest3;
-
-    RecipeInstruction recipeInstructionTest1;
-    RecipeInstruction recipeInstructionTest2;
-    RecipeInstruction recipeInstructionTest3;
-    */
     List<Recipe> recipesTest;
     List<RecipeIngredient> recipeIngredientsTest;
     List<RecipeCategory> recipeCategoriesTest;
@@ -42,19 +26,17 @@ public class RecipeRepoTest {
     @BeforeEach
     public void setup(){
 
-
         //Ingredient
-        Ingredient testIngredient1 = new Ingredient(1,"Korv");
-        Ingredient testIngredient2 = new Ingredient(2,"Grädde");
-        Ingredient testIngredient3 = new Ingredient(3,"Ris");
-        Ingredient testIngredient4 = new Ingredient(4,"Tomatkross");
+        Ingredient testIngredient1 = new Ingredient("Korv");
+        Ingredient testIngredient2 = new Ingredient("Grädde");
+        Ingredient testIngredient3 = new Ingredient("Ris");
+        Ingredient testIngredient4 = new Ingredient("Tomatkross");
 
-        //RecipeIngredient*/
-        RecipeIngredient testRecipeIngredient1 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient1,0.8,Measurement.KG, recipe);
-        RecipeIngredient testRecipeIngredient2 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient2,3.5,Measurement.DL,recipe);
-        RecipeIngredient testRecipeIngredient3 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient3,4.0,Measurement.DL,recipe);
-        RecipeIngredient testRecipeIngredient4 = new RecipeIngredient(UUID.randomUUID().toString(),testIngredient4,5.0,Measurement.DL,recipe);
-
+        //RecipeIngredient
+        RecipeIngredient testRecipeIngredient1 = new RecipeIngredient(testIngredient1,0.8,Measurement.KG, recipe);
+        RecipeIngredient testRecipeIngredient2 = new RecipeIngredient(testIngredient2,3.5,Measurement.DL, recipe);
+        RecipeIngredient testRecipeIngredient3 = new RecipeIngredient(testIngredient3,4.0,Measurement.DL, recipe);
+        RecipeIngredient testRecipeIngredient4 = new RecipeIngredient(testIngredient4,5.0,Measurement.DL, recipe);
 
         //List of RecipeIngredients
         recipeIngredientsTest = new ArrayList<>();
@@ -63,21 +45,14 @@ public class RecipeRepoTest {
         recipeIngredientsTest.add(testRecipeIngredient3);
         recipeIngredientsTest.add(testRecipeIngredient4);
 
-        /*
-        //UUID
-        uuidTest1 = UUID.randomUUID().toString();
-        uuidTest2 = UUID.randomUUID().toString();
-        uuidTest3 = UUID.randomUUID().toString();
+        //RecipeInstruction
 
-        //RecipeInstruction*/
-        RecipeInstruction recipeInstructionTest1 = new RecipeInstruction(UUID.randomUUID().toString(),"Koka riset, stek korven, häll i tomatkross, häll i grädden. Koka 20 min.");
-        //recipeInstructionTest2 = new RecipeInstruction(uuidTest2, "Instruction2");
-        //recipeInstructionTest3 = new RecipeInstruction(uuidTest3, "Instruction3");
-
+        RecipeInstruction recipeInstructionTest1 =
+                new RecipeInstruction("Koka riset, stek korven, häll i tomatkross, häll i grädden. Koka 20 min.");
 
         //RecipeCategory
-        RecipeCategory recipeCategoryTest1 = new RecipeCategory(1, "A",recipesTest);
-        //RecipeCategory recipeCategoryTest2 = new RecipeCategory(2, "B",recipesTest);
+        RecipeCategory recipeCategoryTest1 = new RecipeCategory("Main", recipesTest);
+        //RecipeCategory recipeCategoryTest2 = new RecipeCategory(2, "Side",null);
 
         //List of RecipeCategories
         recipeCategoriesTest = new ArrayList<>();
@@ -85,28 +60,40 @@ public class RecipeRepoTest {
         //recipeCategoriesTest.add(recipeCategoryTest2);
 
         //Recipe
-        //recipeTest1 = new Recipe(1,"Korvstroganoff", recipeIngredientsTest,recipeInstructionTest1,recipeCategoriesTest);
-        //Recipe recipeTest2 = new Recipe(2,"Recipe2", recipeIngredientsTest,recipeInstructionTest2,recipeCategoriesTest);
+        recipe = new Recipe("Korvstroganoff", recipeIngredientsTest, recipeInstructionTest1, recipeCategoriesTest);
 
         //List of Recipes
         recipesTest = new ArrayList<>();
         recipesTest.add(recipe);
-        //recipesTest.add(recipeTest2);
 
-
-        //testObject.saveAll(recipesTest);
-
-        recipe = new Recipe(1,"Korvstroganoff",recipeIngredientsTest,recipeInstructionTest1,null);
+        //Save to RecipeRepo
         testObject.save(recipe);
     }
 
     @Test
     public void test_successfully_created(){
-        assertEquals(1, testObject.findById(1).get().getId());
+        assertEquals(1,testObject.findById(1).get().getId());
     }
 
     @Test
     public void test_find_by_name_contains(){
-        assertEquals("Korv", testObject.findRecipeByName("Korv"));
+        assertEquals("Korvstroganoff", testObject.findRecipeByNameContains("gano").get(0).getName());
+        //List<Recipe> actual = testObject.findRecipeByNameContains("gano");
+        //actual.forEach(System.out::println);
+    }
+
+    @Test
+    public void find_Ingredient(){
+        assertEquals("Korvstroganoff", testObject.findRecipesByRecipeIngredients_Ingredient_Ingredient("Grädde").get(0).getName());
+    }
+
+    @Test
+    public void find_Category(){
+        assertEquals("Korvstroganoff", testObject.findRecipesByRecipeCategories_Category("Main").get(0).getName());
+    }
+
+    @Test
+    public void find_Recipes_Name(){
+        assertEquals("Korvstroganoff", testObject.findRecipesByRecipeCategories_Recipes_Name("Korvstroganoff").get(0).getName());
     }
 }

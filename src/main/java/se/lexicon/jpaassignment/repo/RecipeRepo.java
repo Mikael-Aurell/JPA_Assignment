@@ -6,11 +6,15 @@ import org.springframework.data.repository.query.Param;
 import se.lexicon.jpaassignment.entity.Recipe;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface RecipeRepo extends CrudRepository<Recipe, Integer> {
+public interface RecipeRepo extends CrudRepository<Recipe, Integer>{
 
-    @Query("select r from Recipe r where r.name like '%name%'")
-    List<Recipe> findRecipeByName (@Param("name")String name);
+List<Recipe> findRecipeByNameContains(String name);
+
+List<Recipe> findRecipesByRecipeIngredients_Ingredient_Ingredient(String ingredient);
+
+List<Recipe> findRecipesByRecipeCategories_Category(String category);
+
+List<Recipe> findRecipesByRecipeCategories_Recipes_Name(String name);
 
 }
