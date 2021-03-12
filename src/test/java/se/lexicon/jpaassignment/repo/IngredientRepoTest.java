@@ -33,7 +33,7 @@ public class IngredientRepoTest {
 
     @Test
     public void test_find_by_ingredient_info(){
-        //assertEquals("potato", testObject.findIngredientByIngredient("potato").get().getIngredient());
+        assertEquals("Potato", testObject.findIngredientByIngredient("Potato").get().getIngredient());
         List<Ingredient> result = testObject.findIngredientByIngredientContains("tat");
         result.forEach(System.out::println);
     }
