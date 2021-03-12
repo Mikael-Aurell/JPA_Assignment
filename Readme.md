@@ -5,4 +5,6 @@
 ### 2.4 Added RecipeIngredient and RecipeIngredientTest
 ### 2.5 Added RecipeCategory and RecipeCategoryTest
 ### 2.6 Added Recipe and RecipeTest
-### 2.7 Added Entity and Relationships (not finished)
+### 2.7 Added Entity and Relationships
+### 2.8 Added Repo and Test
+
